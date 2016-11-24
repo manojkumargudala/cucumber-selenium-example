@@ -6,9 +6,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
+import com.storedemoqa.selenium.ScreenCaptureHtmlUnitDriver;
+
 
 public class SeleniumDriverObjImpl implements SeleniumDriverObj {
   WebDriver driver;
+  ScreenCaptureHtmlUnitDriver mydriver;
   EventFiringWebDriver eventFiringWebDriver;
 
   @Override
@@ -30,6 +33,10 @@ public class SeleniumDriverObjImpl implements SeleniumDriverObj {
       System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
       driver = new ChromeDriver();
     }
-
+    if (browserName.equalsIgnoreCase("Headless")) {
+      mydriver = new ScreenCaptureHtmlUnitDriver();
+      mydriver.setJavascriptEnabled(true);
+      driver = mydriver;
+    }
   }
 }

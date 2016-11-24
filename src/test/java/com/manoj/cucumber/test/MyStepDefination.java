@@ -14,7 +14,6 @@ import com.storedemoqa.pageobjects.PageFooter;
 import com.storedemoqa.pageobjects.ProductCaterogyPageObject;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
@@ -28,13 +27,20 @@ public class MyStepDefination {
   PageFooter pageFooter;
   ProductCaterogyPageObject productCategoryObj;
   CheckOutPageObject checkoutPage;
+  SeleniumDriverObj selObj;
 
   @Before
   public void initiateDriverObject() {
     System.out.println("intialize we driver object");
-    SeleniumDriverObj selObj = new SeleniumDriverObjImpl();
-    driver = selObj.getDriver("firefox");
-    wait = new WebDriverWait(driver, 10);
+    selObj = new SeleniumDriverObjImpl();
+
+  }
+
+  @Given("^navigate to base URL in headless browser$")
+  public void navigate_to_base_URL_in_headless_browser() throws Throwable {
+    driver = selObj.getDriver("Headless");
+    wait = new WebDriverWait(driver, 30);
+    initializePageObjects();
   }
 
   @Given("^the below are the user credentials login$")
@@ -44,29 +50,17 @@ public class MyStepDefination {
   }
 
   @Given("^navigate to base URL$")
-  public void navigate_to_base_URL() throws Throwable {
+  public void navigate_to_base_URL() {
+    driver = selObj.getDriver("firefox");
+    wait = new WebDriverWait(driver, 10);
+    initializePageObjects();
+
+  }
+
+  private void initializePageObjects() {
     driver.get("http://store.demoqa.com/");
     homePageObject = new HomePageObject(driver, wait);
     pageFooter = new PageFooter(driver, wait);
-
-  }
-
-  @When("^Google searches for \"([^\"]*)\"$")
-  public void google_searches_for(final String searchString) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
-  }
-
-  @Then("^there should be results count is (\\d+)$")
-  public void there_should_be_results_count_is(final int resultCount) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
-  }
-
-  @Then("^verify first site in the results is \"([^\"]*)\"$")
-  public void verify_first_site_in_the_results_is(final String arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
   }
 
   @When("^navigate to product Category Page$")

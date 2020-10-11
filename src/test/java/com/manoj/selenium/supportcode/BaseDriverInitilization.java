@@ -12,22 +12,20 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
 public abstract class BaseDriverInitilization {
-  protected WebDriver driver;
-  protected Wait<WebDriver> wait;
+	protected WebDriver driver;
+	protected Wait<WebDriver> wait;
 
-  @Before("@InitializeWebDriver")
-  public void initiateDriverObject() {
-    SeleniumDriverObj selObj = new SeleniumDriverObjImpl();
-    driver = selObj.getDriver("firefox");
-    wait = new FluentWait<WebDriver>(driver).withTimeout(20, TimeUnit.SECONDS)
-        .pollingEvery(1, TimeUnit.SECONDS).ignoring(NoSuchElementException.class)
-        .ignoring(StaleElementReferenceException.class);
-  }
+	@Before("@InitializeWebDriver")
+	public void initiateDriverObject() {
+		SeleniumDriverObj selObj = new SeleniumDriverObjImpl();
+		driver = selObj.getDriver("chrome");
+		wait = new FluentWait<WebDriver>(driver).withTimeout(20, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS)
+				.ignoring(NoSuchElementException.class).ignoring(StaleElementReferenceException.class);
+	}
 
-
-  @After("@InitializeWebDriver")
-  public void closeDriver() {
-    driver.close();
-    driver.quit();
-  }
+	@After("@InitializeWebDriver")
+	public void closeDriver() {
+		driver.close();
+		driver.quit();
+	}
 }

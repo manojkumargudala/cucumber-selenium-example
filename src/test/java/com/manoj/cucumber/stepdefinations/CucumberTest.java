@@ -1,4 +1,4 @@
-package com.manoj.cucumber.test;
+package com.manoj.cucumber.stepdefinations;
 
 import org.junit.runner.RunWith;
 

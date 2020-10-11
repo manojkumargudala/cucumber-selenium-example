@@ -8,6 +8,6 @@ Feature: Automation BDD driver framework with selenium
     Given the below are the user credentials login
       | userId | pasword |
       | true   | true    |
-    When navigate to product Category Page
-    And Add product to cart
-    Then verify "Iphone" added to cart
+    When navigate to Frame object Page
+    And click on nested frame link
+    Then verify "BOTTOM" frame is displayed

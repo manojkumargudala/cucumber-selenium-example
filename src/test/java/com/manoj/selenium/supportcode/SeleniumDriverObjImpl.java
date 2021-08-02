@@ -29,7 +29,7 @@ public class SeleniumDriverObjImpl implements SeleniumDriverObj {
 			driver = new InternetExplorerDriver();
 		}
 		if (browserName.equalsIgnoreCase("Chrome")) {
-			File f = new File("chromdriver.exe");
+			File f = new File("chromedriver.exe");
 			if (f.exists()) {
 				System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 			} else {
@@ -38,7 +38,7 @@ public class SeleniumDriverObjImpl implements SeleniumDriverObj {
 			driver = new ChromeDriver();
 		}
 		if (browserName.equalsIgnoreCase("Headless")) {
-			File f = new File("chromdriver.exe");
+			File f = new File("chromedriver.exe");
 			if (f.exists()) {
 				System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 			} else {
